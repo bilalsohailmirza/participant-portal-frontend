@@ -1,6 +1,4 @@
-import React from 'react'
 import { HomeAccordion } from '../components/Accordian'
-import { Home } from 'lucide-react'
 
 const FAQ = () => {
   return (

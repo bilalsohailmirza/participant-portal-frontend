@@ -1,6 +1,5 @@
 import React from 'react'
 import { HomeCard } from '../components/Card'
-import { Home } from 'lucide-react'
 const FeaturedEvents = () => {
   return (
     <div className='p-4'>

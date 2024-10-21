@@ -7,8 +7,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 
 import procom from '@/assets/procom.jpg'
@@ -59,8 +57,6 @@ export const HomeCarousel = () => {
           </CarouselItem>
           
         </CarouselContent>
-        {/* <CarouselPrevious className="" />  */}
-        {/* <CarouselNext className="" /> */}
       </Carousel>
     </div>
   );

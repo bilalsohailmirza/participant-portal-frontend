@@ -17,7 +17,7 @@ import {
         <AccordionItem value="item-2">
           <AccordionTrigger>How can I register for a competition?</AccordionTrigger>
           <AccordionContent>
-           Registration in a competition can be done through the page of that particular competition. The competition page can be found through the societie's page that is organizing that competition.
+           Registration in a competition can be done through the page of that particular competition. The competition page can be found through the societie&apos;s page that is organizing that competition.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-3">
@@ -35,7 +35,7 @@ import {
         <AccordionItem value="item-2">
           <AccordionTrigger>How can I register for a competition?</AccordionTrigger>
           <AccordionContent>
-           Registration in a competition can be done through the page of that particular competition. The competition page can be found through the societie's page that is organizing that competition.
+           Registration in a competition can be done through the page of that particular competition. The competition page can be found through the societie&apos;s page that is organizing that competition.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-3">
