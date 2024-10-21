@@ -65,19 +65,19 @@ const components: { title: string; href: string; description: string }[] = [
   },
 ]
 
-export function NavigationMenuDemo() {
+export function Navbar() {
   return (
 
-    <div className="flex justify-">
+    <div className="flex">
 
     <NavigationMenu className="">
       <NavigationMenuList className="flex justify-center">
         <NavigationMenuItem>
-          <NavigationMenuLink href="/">Home</NavigationMenuLink>
+          <NavigationMenuLink href="/" className={`${navigationMenuTriggerStyle()} font-semibold`}>Home</NavigationMenuLink>
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="" >Societies</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="font-semibold" >Societies</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[200px] p-4 md:w-[300px] md:grid-cols-2 lg:w-[400px] ">
               {components.map((component) => (
@@ -92,16 +92,16 @@ export function NavigationMenuDemo() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+        <NavigationMenuItem className="">
+          <Link href="/docs" legacyBehavior passHref className="">
+            <NavigationMenuLink className={`${navigationMenuTriggerStyle()} font-semibold`}>
               Events
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <Link href="/docs" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+            <NavigationMenuLink className={`${navigationMenuTriggerStyle()} font-semibold`}>
               Competititons
             </NavigationMenuLink>
           </Link>
