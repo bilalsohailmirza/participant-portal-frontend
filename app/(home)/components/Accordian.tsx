@@ -6,7 +6,7 @@ import {
   } from "@/components/ui/accordion"
   
   export function HomeAccordion() {
-    return (
+    return 
       <Accordion type="single" collapsible className="w-[70%] text-xl">
         <AccordionItem value="item-1">
           <AccordionTrigger className="">What is Campus Connect?</AccordionTrigger>
@@ -21,7 +21,7 @@ import {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-3">
-          <AccordionTrigger>Is registration feee refundable?</AccordionTrigger>
+          <AccordionTrigger>Is registration fee refundable?</AccordionTrigger>
           <AccordionContent>
             Registration fee for any Event or Competition is non refundable.
           </AccordionContent>
@@ -39,12 +39,12 @@ import {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-3">
-          <AccordionTrigger>Is registration feee refundable?</AccordionTrigger>
+          <AccordionTrigger>Is registration fee refundable?</AccordionTrigger>
           <AccordionContent>
             Registration fee for any Event or Competition is non refundable.
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-    )
+    
   }
   
