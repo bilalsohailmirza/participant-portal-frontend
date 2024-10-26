@@ -77,7 +77,9 @@ export function Navbar() {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
+          <Link href="/societies" passHref>
           <NavigationMenuTrigger className="font-semibold" >Societies</NavigationMenuTrigger>
+          </Link>
           <NavigationMenuContent>
             <ul className="grid w-[200px] p-4 md:w-[300px] md:grid-cols-2 lg:w-[400px] ">
               {components.map((component) => (
