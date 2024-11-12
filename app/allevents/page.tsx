@@ -1,8 +1,9 @@
 "use client"
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { FeaturedMembersCarousel } from "./sections/FeaturedMembers";
-const SocietiesPage = () =>{
+import { EventHeroSection } from "./sections/HeroSection";
+import { AllSocietiesDisplaySection } from "./sections/AllSocietiesDisplaySection";
+const AllEventsPage = () =>{
     return (
         <>
         <div className="flex justify-between px-5 py-2">
@@ -12,12 +13,12 @@ const SocietiesPage = () =>{
         <Navbar />
         </div>
 
-        <div className="text-4xl font-bold flex justify-center my-4">
-            <h2>Featured Members</h2>
-        </div>
-        <FeaturedMembersCarousel />
+        <EventHeroSection/>
+
+        <AllSocietiesDisplaySection />
+
         <Footer />
         </>
       )}
   
-  export default SocietiesPage;
+export default AllEventsPage;

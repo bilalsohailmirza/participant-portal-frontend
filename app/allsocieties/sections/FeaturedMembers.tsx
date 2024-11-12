@@ -1,6 +1,6 @@
 "use client";
 import Autoplay from "embla-carousel-autoplay";
-import { MemberCard } from "../components/Card";
+import { MemberCard } from "../components/MemberCard";
 import {
   Carousel,
   CarouselContent,
@@ -34,7 +34,7 @@ export const FeaturedMembersCarousel = () => {
                 <MemberCard />
                 <MemberCard />
             </CarouselItem>
-            <CarouselItem className="flex justify-center">
+            <CarouselItem className="flex justify-evenly">
                 <MemberCard />
                 <MemberCard />
                 <MemberCard />
