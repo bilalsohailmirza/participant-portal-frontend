@@ -2,8 +2,14 @@
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { EventHeroSection } from "./sections/HeroSection";
-import { AllSocietiesDisplaySection } from "./sections/AllSocietiesDisplaySection";
-const AllEventsPage = () =>{
+import { EventsDetailsSection } from "./sections/EventdetailsSection";
+export default async function EventPage({
+  params,
+}: {
+  params: Promise<{ event : string }>
+}) {
+  
+    const event = (await params).event
     return (
         <>
         <div className="flex justify-between px-5 py-2">
@@ -15,10 +21,10 @@ const AllEventsPage = () =>{
 
         <EventHeroSection/>
 
-        <AllSocietiesDisplaySection />
+        <EventsDetailsSection/>
 
         <Footer />
         </>
-      )}
-  
-export default AllEventsPage;
+      )
+    }
+// export default EventsPage;

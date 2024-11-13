@@ -5,7 +5,16 @@ import { FeaturedMembersCarousel } from "./sections/FeaturedMembers";
 import { SocietyHeroSection } from "./sections/HeroSection";
 import { EventsSection } from "./sections/EventsSection";
 import { CompetitionSection } from "./sections/CometitionSection";
-const SocietiesPage = () =>{
+import { useParams } from "next/navigation";
+// const SocietiesPage = () =>{
+export default async function SocietyPage({
+    params,
+  }: {
+    params: Promise<{ society: string }>
+  }) {
+    
+
+    const society = (await params).society
     return (
         <>
         <div className="flex justify-between px-5 py-2">
@@ -23,7 +32,8 @@ const SocietiesPage = () =>{
         <FeaturedMembersCarousel />
 
         <div className="text-4xl font-bold flex justify-center my-4">
-            <h2>Events By Society</h2>
+            {/* <h2>Events By Society</h2> */}
+            <h2>Events By {society}</h2>
         </div>
         <EventsSection/>
 
@@ -37,4 +47,4 @@ const SocietiesPage = () =>{
         </>
       )}
   
-  export default SocietiesPage;
+//   export default SocietiesPage;
