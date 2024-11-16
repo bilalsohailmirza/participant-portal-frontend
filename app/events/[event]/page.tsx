@@ -3,6 +3,9 @@ import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { EventHeroSection } from "./sections/HeroSection";
 import { EventsDetailsSection } from "./sections/EventdetailsSection";
+import EventDescriptionSection from "./sections/EventDescriptionSection";
+import EventRulesSection from "./sections/EventRulesSection";
+import EventRegistrationForm from "./components/EventRegistrationForm";
 export default async function EventPage({
   params,
 }: {
@@ -21,7 +24,12 @@ export default async function EventPage({
 
         <EventHeroSection/>
 
-        <EventsDetailsSection/>
+        {/* <EventsDetailsSection/> */}
+        <EventDescriptionSection/>
+
+        <EventRulesSection/>
+
+        <EventRegistrationForm/>
 
         <Footer />
         </>
