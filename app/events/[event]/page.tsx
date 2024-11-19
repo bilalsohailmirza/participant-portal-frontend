@@ -15,12 +15,8 @@ export default async function EventPage({
     const event = (await params).event
     return (
         <>
-        <div className="flex justify-between px-5 py-2">
-        <div className="py-1 text-xl font-bold">
-          Campus Connect
-        </div>
+        
         <Navbar />
-        </div>
 
         <EventHeroSection/>
 
@@ -28,7 +24,7 @@ export default async function EventPage({
         <EventDescriptionSection/>
 
         <EventRulesSection/>
-
+        
         <EventRegistrationForm/>
 
         <Footer />
