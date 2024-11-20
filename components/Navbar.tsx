@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import Link from "next/link"
+import * as React from "react";
+import Link from "next/link";
 
-import { cn } from "@/lib/utils"
-// import { Icons } from "@/components/icons"
+import { cn } from "@/lib/utils";
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -13,7 +13,8 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui/navigation-menu";
+import { Button } from "./ui/button";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -63,66 +64,88 @@ const components: { title: string; href: string; description: string }[] = [
     description:
       "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
   },
-]
+];
 
 export function Navbar() {
   return (
+    <div className="flex justify-between px-5 py-2 shadow-md">
+      <div className="py-1 text-xl font-bold">Campus Connect</div>
+      <div className="flex gap-4">
+        <NavigationMenu className="">
+          <NavigationMenuList className="flex justify-center">
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                href="/"
+                className={`${navigationMenuTriggerStyle()} font-semibold`}
+              >
+                Home
+              </NavigationMenuLink>
+            </NavigationMenuItem>
 
-    <div className="flex">
-
-    <NavigationMenu className="">
-      <NavigationMenuList className="flex justify-center">
-        <NavigationMenuItem>
-          <NavigationMenuLink href="/" className={`${navigationMenuTriggerStyle()} font-semibold`}>Home</NavigationMenuLink>
-        </NavigationMenuItem>
-
-        <NavigationMenuItem>
-          <NavigationMenuTrigger className="font-semibold" >Societies</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[200px] p-4 md:w-[300px] md:grid-cols-2 lg:w-[400px] ">
-              {components.map((component) => (
-                  <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                  >
-                  {/* {component.description} */}
-                </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem className="">
-          <Link href="/docs" legacyBehavior passHref className="">
-            <NavigationMenuLink className={`${navigationMenuTriggerStyle()} font-semibold`}>
-              Events
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
-            <NavigationMenuLink className={`${navigationMenuTriggerStyle()} font-semibold`}>
-              Competititons
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
-  </div>
-  )
+            <NavigationMenuItem>
+              <Link href="/societies" passHref>
+                <NavigationMenuTrigger className="font-semibold">
+                  Societies
+                </NavigationMenuTrigger>
+              </Link>
+              <NavigationMenuContent>
+                <ul className="grid w-[200px] p-4 md:w-[300px] md:grid-cols-2 lg:w-[400px] ">
+                  {components.map((component) => (
+                    <ListItem
+                      key={component.title}
+                      title={component.title}
+                      href={component.href}
+                    >
+                      {/* {component.description} */}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem className="">
+              <Link href="/events" legacyBehavior passHref className="">
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} font-semibold`}
+                >
+                  Events
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/competitions" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} font-semibold`}
+                >
+                  Competititons
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+        <div className="flex gap-2">
+          <Button variant="outline">
+            <Link href="/signup">Sign Up</Link>
+          </Button>
+          <Button>
+            <Link href="/login">Login</Link>
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
   React.ComponentPropsWithoutRef<"a">
 >(({ className, title, children, ...props }, ref) => {
-    return (
-        <li>
+  return (
+    <li>
       <NavigationMenuLink asChild>
         <a
           ref={ref}
           className={cn(
-              "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
             className
           )}
           {...props}
@@ -134,6 +157,6 @@ const ListItem = React.forwardRef<
         </a>
       </NavigationMenuLink>
     </li>
-  )
-})
-ListItem.displayName = "ListItem"
+  );
+});
+ListItem.displayName = "ListItem";
