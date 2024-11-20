@@ -5,7 +5,7 @@ import { FeaturedMembersCarousel } from "./sections/FeaturedMembers";
 import { SocietyHeroSection } from "./sections/HeroSection";
 import { EventsSection } from "./sections/EventsSection";
 import { CompetitionSection } from "./sections/CometitionSection";
-import { useParams } from "next/navigation";
+// import { useParams } from "next/navigation";
 // const SocietiesPage = () =>{
 export default async function SocietyPage({
     params,
