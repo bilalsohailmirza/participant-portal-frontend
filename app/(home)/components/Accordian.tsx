@@ -7,6 +7,7 @@ import {
   
   export function HomeAccordion() {
     return (
+
       <Accordion type="single" collapsible className="w-[70%] text-xl">
         <AccordionItem value="item-1">
           <AccordionTrigger className="">What is Campus Connect?</AccordionTrigger>
@@ -45,6 +46,7 @@ import {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-  )  
+  )
+    
   }
   
