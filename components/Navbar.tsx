@@ -1,9 +1,14 @@
 "use client";
 
-import * as React from "react";
+import * as React from 'react'
+import { useEffect, useState } from 'react';
 import Link from "next/link";
-
+import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
+
+import { useDispatch, useSelector } from "react-redux";
+import { getAuthToken, removeAuthToken } from "@/app/redux/entities/user/userSlice";
+import { RootState } from "@/app/redux/store";
 
 import {
   NavigationMenu,
@@ -67,6 +72,20 @@ const components: { title: string; href: string; description: string }[] = [
 ];
 
 export function Navbar() {
+
+  const status = useSelector((state: RootState) => state.user.authToken);
+  const [authStatus, setAuthStatus] = useState(status); 
+
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const logout = () => {
+    
+    dispatch(removeAuthToken());
+    setAuthStatus("")
+    router.push('/');
+  }
+  
   return (
     <div className="flex justify-between px-5 py-2 shadow-md">
       <div className="py-1 text-xl font-bold">Campus Connect</div>
@@ -76,7 +95,7 @@ export function Navbar() {
             <NavigationMenuItem>
               <NavigationMenuLink
                 href="/"
-                className={`${navigationMenuTriggerStyle()} font-semibold`}
+                className={`${navigationMenuTriggerStyle()}`}
               >
                 Home
               </NavigationMenuLink>
@@ -84,7 +103,7 @@ export function Navbar() {
 
             <NavigationMenuItem>
               <Link href="/societies" passHref>
-                <NavigationMenuTrigger className="font-semibold">
+                <NavigationMenuTrigger className="">
                   Societies
                 </NavigationMenuTrigger>
               </Link>
@@ -105,7 +124,7 @@ export function Navbar() {
             <NavigationMenuItem className="">
               <Link href="/events" legacyBehavior passHref className="">
                 <NavigationMenuLink
-                  className={`${navigationMenuTriggerStyle()} font-semibold`}
+                  className={`${navigationMenuTriggerStyle()}`}
                 >
                   Events
                 </NavigationMenuLink>
@@ -114,7 +133,7 @@ export function Navbar() {
             <NavigationMenuItem>
               <Link href="/competitions" legacyBehavior passHref>
                 <NavigationMenuLink
-                  className={`${navigationMenuTriggerStyle()} font-semibold`}
+                  className={`${navigationMenuTriggerStyle()}font-normal`}
                 >
                   Competititons
                 </NavigationMenuLink>
@@ -122,14 +141,25 @@ export function Navbar() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
-        <div className="flex gap-2">
-          <Button variant="outline">
-            <Link href="/signup">Sign Up</Link>
-          </Button>
-          <Button>
-            <Link href="/login">Login</Link>
-          </Button>
-        </div>
+        { !authStatus ? (
+          <div className="flex gap-2">
+            <Button variant="outline">
+              <Link href="/login">Login</Link>
+            </Button>
+            <Button>
+              <Link href="/signup">Sign Up</Link>
+            </Button>
+          </div>
+        ) : (
+          <div className="flex gap-2">
+            <Button variant="outline" onClick={logout}>
+              Logout
+            </Button>
+            <Button>
+              <Link href="/profile">My Profile</Link>
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
