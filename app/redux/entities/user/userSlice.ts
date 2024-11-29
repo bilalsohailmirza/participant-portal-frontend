@@ -30,9 +30,9 @@ export const userSlice = createSlice({
         removeAuthToken: (state) => {
             if(Cookies.get('authToken')){
                 Cookies.remove('authToken');
-                state = initialState;
+                state = initialState
             }
-            return initialState;
+            return state;
         }
     }
 })

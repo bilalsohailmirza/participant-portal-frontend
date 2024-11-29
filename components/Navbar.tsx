@@ -1,13 +1,13 @@
 "use client";
 
 import * as React from 'react'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getAuthToken, removeAuthToken } from "@/app/redux/entities/user/userSlice";
+import { removeAuthToken } from "@/app/redux/entities/user/userSlice";
 import { RootState } from "@/app/redux/store";
 
 import {

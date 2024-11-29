@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useDispatch } from "react-redux";
-import { setAuthToken, removeAuthToken } from "@/app/redux/entities/user/userSlice";
+import { setAuthToken } from "@/app/redux/entities/user/userSlice";
 
 import {
   Card,
@@ -37,7 +37,7 @@ export function LoginForm() {
       
       dispatch(setAuthToken(result.data.accessToken));
       redirectPath = "/profile";
-      router.push("/profile");
+      router.push(redirectPath);
 
     } catch (error) {
       console.log(error);
