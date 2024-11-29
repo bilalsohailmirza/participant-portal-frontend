@@ -11,11 +11,7 @@ return (
   <>
 
   <Navbar />
-  
-  <div className="">
   <HomeCarousel />
-  </div>
-  
   <FeaturedSocieties />
   <FeaturedEvents />
   <FAQ />

@@ -1,17 +1,52 @@
-import Link from "next/link"
+"use client";
+import axios from "axios";
+import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { useDispatch } from "react-redux";
+import { setAuthToken, removeAuthToken } from "@/app/redux/entities/user/userSlice";
 
-import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export function LoginForm() {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const login = async () => {
+
+    let redirectPath: string | null = null;
+    
+    try {
+      const result = await axios.post(`http://localhost:8080/api/users/login`, {
+        email: email,
+        password: password,
+      });
+      
+      dispatch(setAuthToken(result.data.accessToken));
+      redirectPath = "/profile";
+      router.push("/profile");
+
+    } catch (error) {
+      console.log(error);
+      
+    }
+
+  };
+
+
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -29,6 +64,7 @@ export function LoginForm() {
               type="email"
               placeholder="m@example.com"
               required
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="grid gap-2">
@@ -38,9 +74,15 @@ export function LoginForm() {
                 Forgot your password?
               </Link>
             </div>
-            <Input id="password" type="password" required />
+            <Input
+              id="password"
+              type="password"
+              required
+              onChange={(e) => setPassword(e.target.value)}
+              onSubmit={() => login()}
+            />
           </div>
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full" onClick={() => login()}>
             Login
           </Button>
           <Button variant="outline" className="w-full">
@@ -55,5 +97,5 @@ export function LoginForm() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
