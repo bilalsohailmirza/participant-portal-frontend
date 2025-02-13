@@ -1,32 +1,32 @@
 "use client"
+import Cookies from "js-cookie";
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { EventHeroSection } from "./sections/HeroSection";
 // import { EventsDetailsSection } from "./sections/EventdetailsSection";
 import EventDescriptionSection from "./sections/EventDescriptionSection";
-import EventRulesSection from "./sections/EventRulesSection";
+// import EventRulesSection from "./sections/EventRulesSection";
 import { EventRegistrationForm } from "./components/EventRegistrationForm";
-export default async function EventPage({
-  params,
-}: {
-  params: Promise<{ event : string }>
-}) {
+import { usePathname } from "next/navigation";
+export default function EventPage() {
+
+    const authtoken = Cookies.get('authToken')
   
-    const event = (await params).event
-    console.log(event)
+    const eventId = usePathname().slice(8)
+    
     return (
         <>
         
         <Navbar />
 
-        <EventHeroSection/>
+        <EventHeroSection id={eventId} />
 
         {/* <EventsDetailsSection/> */}
-        <EventDescriptionSection/>
+        <EventDescriptionSection id={eventId}/>
 
-        <EventRulesSection/>
+        {/* <EventRulesSection/> */}
         
-        <EventRegistrationForm/>
+        <EventRegistrationForm id={eventId} token={authtoken} />
 
         <Footer />
         </>

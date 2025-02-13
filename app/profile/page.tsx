@@ -1,70 +1,61 @@
-'use client';
-import { Navbar } from "@/components/Navbar";
-import { Separator } from "@/components/ui/separator";
-import SidebarNav from "./components/sidebar-nav";
-import ContentSection from "./components/sidebar-section";
+"use client";
+import { useState } from "react";
 
-export default function Settings() {
+import { Navbar } from "@/components/Navbar";
+import { Button } from "@/components/ui/button";
+import React from "react";
+import ProfileHeader from "./components/ProfileHeader";
+import RegistrationsHeader from "./components/RegistrationsHeader";
+import { Separator } from "@/components/ui/separator";
+import ProfileSection from "./components/ProfileSection";
+import RegistrationsSection from "./components/RegistrationsSection";
+import Cookies from "js-cookie";
+
+const ProfilePage = () => {
+  const [profilePage, setProfilePage] = useState(true);
+  const [registrations, setRegistrations] = useState(false);
+  const authToken = Cookies.get("authToken");
+
+  const handleProfile = () => {
+    setRegistrations(false);
+    setProfilePage(true);
+  };
+  const handleRegistrations = () => {
+    setProfilePage(false);
+    setRegistrations(true);
+  };
   return (
     <>
       <Navbar />
-      <div className="space-y-0.5">
-        <h1 className="text-2xl font-bold tracking-tight md:text-3xl">
-          My Profile
-        </h1>
-        <p className="text-muted-foreground">
-          Manage your account settings and your personal data.
-        </p>
-      </div>
-      <Separator className="my-4 lg:my-6" />
-      <div className="flex flex-1 flex-col space-y-8 md:space-y-2 md:overflow-hidden lg:flex-row lg:space-x-12 lg:space-y-0">
-        <aside className="top-0 lg:sticky lg:w-1/5">
-          <SidebarNav items={sidebarNavItems} />
+      {profilePage ? <ProfileHeader /> : <></>}
+      {registrations ? <RegistrationsHeader /> : <></>}
+      <Separator />
+      <div className="min-h-[80vh] flex">
+        <aside className="w-[15%] p-2 border-2 ml-[2px]">
+          <div className="flex flex-col gap-2">
+            <Button
+              className="text-md"
+              variant={`${profilePage ? "secondary" : "ghost"}`}
+              onClick={handleProfile}
+            >
+              Profile
+            </Button>
+            <Button
+              className="text-md"
+              variant={`${registrations ? "secondary" : "ghost"}`}
+              onClick={handleRegistrations}
+            >
+              My Registrations
+            </Button>
+          </div>
         </aside>
-        {/* <div className='flex w-full p-1 pr-4 md:overflow-y-hidden'>
-            <Outlet />
-          </div> */}
-      </div>
 
-      <ContentSection
-        title="Profile"
-        desc="This is how others will see you on the site."
-      >
-        {/* <ProfileForm /> */}
-      </ContentSection>
+        {profilePage ? <ProfileSection token={authToken} /> : <></>}
+        {registrations ? <RegistrationsSection token={authToken} /> : <></>}
+        {/* </main> */}
+      </div>
     </>
   );
-}
+};
 
-const sidebarNavItems = [
-  {
-    title: "Profile",
-    // icon: <IconUser size={18}
-    href: "/settings",
-  },
-  {
-    title: "Account",
-    // icon: <IconTool size={18} />,
-    href: "/settings/account",
-  },
-  {
-    title: "Appearance",
-    // icon: <IconPalette size={18} />,
-    href: "/settings/appearance",
-  },
-  {
-    title: "Notifications",
-    // icon: <IconNotification size={18} />,
-    href: "/settings/notifications",
-  },
-  {
-    title: "Display",
-    // icon: <IconBrowserCheck size={18} />,
-    href: "/settings/display",
-  },
-  {
-    title: "Error Example",
-    // icon: <IconExclamationCircle size={18} />,
-    href: "/settings/error-example",
-  },
-];
+export default ProfilePage;

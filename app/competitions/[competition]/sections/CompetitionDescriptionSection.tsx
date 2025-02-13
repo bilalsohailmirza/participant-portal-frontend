@@ -2,27 +2,29 @@ import Image from "next/image";
 import procom from "@/assets/procom.jpg";
 import axios from "axios";
 import { useState, useEffect } from "react";
-export default function EventDescriptionSection({ id }: { id: string }) {
+export default function CompetitionDescriptionSection({ id }: { id: string }) {
   const [eventAbout, setEventAbout] = useState("");
   // const [eventDescription, setEventDescription] = useState("");
-  const [eventDate, setEventDate] = useState("");
-  const [eventTime, setEventTime] = useState("");
-  const updateEventState = (result) => {
-    setEventAbout(result.data.about);
-    // setEventDescription(result.data.description)
-    setEventDate(result.data.date);
-    setEventTime(result.data.time);
-  };
+  const [competitionDate, setCompetitionDate] = useState("");
+  const [competitionTime, setCompetitionTime] = useState("");
+
   useEffect(() => {
-    const fetchEvent = async () => {
+    const fetchCompetition = async () => {
       const result = await axios.get(
-        `${process.env.BASE_URL}/events/getDetails?id=${id}`
+        `${process.env.BASE_URL}/competition/getDetails?id=${id}`
       );
-      if (result.data) {
-        updateEventState(result);
+
+      if(result.data){
+        setEventAbout(result.data.about)
+        setCompetitionDate(result.data.date)
+        setCompetitionTime(result.data.time)
       }
-    };
-    fetchEvent();
+        // setEventDescription(result.data.description)
+       
+}
+      fetchCompetition();
+  
+    
   }, []);
   return (
     <div id="about" className="relative bg-white overflow-hidden mt-16">
@@ -42,10 +44,10 @@ export default function EventDescriptionSection({ id }: { id: string }) {
         </div>
         <div className="">
           <h2 className="my-6 text-xl tracking-tight font-extrabold text-gray-900 sm:text-3xl md:text-2xl">
-            Event Date: {eventDate}
+            Event Date: {competitionDate}
           </h2>
           <h2 className="my-6 text-xl tracking-tight font-extrabold text-gray-900 sm:text-3xl md:text-2xl">
-            Event Time: {eventTime}
+            Event Time: {competitionTime}
           </h2>
         </div>
       </div>

@@ -1,28 +1,39 @@
-import * as React from "react"
+import * as React from "react";
 
-import Image from "next/image"
+import Image from "next/image";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import procom from '@/assets/procom.jpg'
+} from "@/components/ui/card";
 
-export function HomeCard() {
+import Link from "next/link";
+
+export function HomeCard({
+  id,
+  name,
+  desc,
+  logo,
+} ) {
+  const path = `societies/` + `${id}`;
+
   return (
-    <div className="">
-
-    <Card className="w-[450px] lg:w-[350px] hover:scale-105 duration-300 cursor-pointer">
-      <CardHeader>
-        <CardTitle className="flex justify-center">PROCOM</CardTitle>
-        <CardDescription className="flex justify-center text-center">The society that organizes the flagship event of PROCOM at FAST-NUCES</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <Image src={procom} alt="society image" height={500}/>
-      </CardContent>
-    </Card>
-    </div>
-  )
+    <Link href={path}>
+      <div className="">
+        <Card className="w-[350px] lg:w-[350px] hover:scale-105 duration-300 cursor-pointer">
+          <CardHeader>
+            <CardTitle className="flex justify-center">{name}</CardTitle>
+            <CardDescription className="flex justify-center text-center">
+              {desc}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Image src={logo} alt="society image" width={300} height={300} />
+          </CardContent>
+        </Card>
+      </div>
+    </Link>
+  );
 }

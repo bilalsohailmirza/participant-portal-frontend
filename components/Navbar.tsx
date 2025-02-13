@@ -1,14 +1,14 @@
 "use client";
 
 import * as React from 'react'
-import { useState } from 'react';
+// import { useState} from 'react';
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-
-import { useDispatch, useSelector } from "react-redux";
+import Cookies from 'js-cookie';
+import { useDispatch, } from "react-redux";
 import { removeAuthToken } from "@/app/redux/entities/user/userSlice";
-import { RootState } from "@/app/redux/store";
+// import { RootState } from "@/app/redux/store";
 
 import {
   NavigationMenu,
@@ -73,8 +73,12 @@ const components: { title: string; href: string; description: string }[] = [
 
 export function Navbar() {
 
-  const status = useSelector((state: RootState) => state.user.authToken);
-  const [authStatus, setAuthStatus] = useState(status); 
+  // const status = useSelector((state: RootState) => state.user.authToken);
+  // const [authStatus, setAuthStatus] = useState("");
+  // console.log(typeof status)
+  // console.log(status)
+  // setAuthStatus(status) 
+  // console.log(status)
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -82,9 +86,12 @@ export function Navbar() {
   const logout = () => {
     
     dispatch(removeAuthToken());
-    setAuthStatus("")
+    // setAuthStatus("")
     router.push('/');
   }
+  // useEffect(() => {
+
+  // }, [authStatus])
   
   return (
     <div className="flex justify-between px-5 py-2 shadow-md">
@@ -141,22 +148,23 @@ export function Navbar() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
-        { !authStatus ? (
-          <div className="flex gap-2">
-            <Button variant="outline">
-              <Link href="/login">Login</Link>
-            </Button>
-            <Button>
-              <Link href="/signup">Sign Up</Link>
-            </Button>
-          </div>
-        ) : (
+        { Cookies.get('authToken') ? (
+          
           <div className="flex gap-2">
             <Button variant="outline" onClick={logout}>
               Logout
             </Button>
             <Button>
               <Link href="/profile">My Profile</Link>
+            </Button>
+          </div>
+        ) : (
+          <div className="flex gap-2">
+            <Button variant="outline">
+              <Link href="/login">Login</Link>
+            </Button>
+            <Button>
+              <Link href="/signup">Sign Up</Link>
             </Button>
           </div>
         )}

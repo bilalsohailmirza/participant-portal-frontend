@@ -1,4 +1,6 @@
 // 'use client'
+
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,10 +11,10 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useState, useEffect } from "react";
 
-export function EventRegistrationForm({ id, token }) {
+export function CompetitionRegistrationForm({id, token}) {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -23,12 +25,13 @@ export function EventRegistrationForm({ id, token }) {
   useEffect(() => {
     const fetchEvent = async () => {
       const result = await axios.get(`${process.env.BASE_URL}/events/getDetails?id=${id}`)
-      if(result.data){
-        setActivityId(result.data.activityId);
+      {
+        const opt = result.data ? setActivityId(result.data.activityId): "";
+        console.log(opt)
       }
     } 
     fetchEvent()
-  }, [])
+  }, [id])
 
   const handleSubmit = async () => {
     
@@ -52,17 +55,10 @@ export function EventRegistrationForm({ id, token }) {
       }
       }catch(error) {
         console.log(error)
+        alert(error)
       }
 
-  // {
-
-  //   result.message && 
-  //   console.log(result)
-  //   alert(result.message)
-  // }
   }
-
-
   return (
     <Card className="mx-auto max-w-lg my-8">
       <CardHeader>

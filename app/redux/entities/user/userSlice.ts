@@ -3,11 +3,22 @@ import Cookies from 'js-cookie';
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface UserState {
-    authToken: string
+    authToken: string,
+    id: string,
+    name: string,
+    email: string,
+    phone: string,
+    organization: string
+
 }
 
 const initialState: UserState = {
-    authToken: ""
+    authToken: "",
+    id: "",
+    name: "",
+    email: "",
+    phone: "",
+    organization: ""
 }
 
 export const userSlice = createSlice({
@@ -23,9 +34,9 @@ export const userSlice = createSlice({
             return state
         },
         setAuthToken : (state, action) => {
-            const authToken = action.payload;
-            state.authToken = authToken;
-            Cookies.set('authToken', authToken, { secure: true, sameSite: 'strict' });
+            const token = action.payload;
+            state.authToken = token;
+            Cookies.set('authToken', state.authToken, { secure: true, sameSite: 'strict' });
         },
         removeAuthToken: (state) => {
             if(Cookies.get('authToken')){

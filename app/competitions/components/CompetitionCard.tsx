@@ -1,25 +1,24 @@
-import * as React from "react";
-
-import Image from "next/image";
 import {
   Card,
-  CardContent,
-  CardDescription,
   CardHeader,
+  CardContent,
   CardTitle,
+  CardDescription,
 } from "@/components/ui/card";
-import procom from "@/assets/procom.jpg";
 import Link from "next/link";
+import React from "react";
+import Image from "next/image";
+import procom from "@/assets/procom.jpg";
 
-export function EventCard({
+const CompetitionCard = ({
   id,
   name,
   desc,
-   logo
-}) {
+  logo
+}) => {
   console.log(logo)
   return (
-    <Link href={`events/${id}`}>
+    <Link href={`competitions/${id}`}>
       <div className="">
         <Card className="w-[450px] lg:w-[500px] hover:scale-105 duration-300 cursor-pointer">
           <CardHeader>
@@ -35,4 +34,6 @@ export function EventCard({
       </div>
     </Link>
   );
-}
+};
+
+export default CompetitionCard;

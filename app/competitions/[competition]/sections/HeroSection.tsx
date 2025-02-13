@@ -5,21 +5,21 @@ import axios from "axios";
 import { SearchIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
-export function EventHeroSection({ id }) {
-  const [eventName, setEventName] = useState("");
-  const [eventDescription, setEventDescription] = useState("");
+export function CompetitionHeroSection({ id }) {
+  const [competitionName, setCompetitionName] = useState("");
+  const [competitionDescription, setCompetitionDescription] = useState("");
 
   useEffect(() => {
-    const fetchEvent = async () => {
+    const fetchCompetition = async () => {
       const result = await axios.get(
-        `${process.env.BASE_URL}/events/getDetails?id=${id}`
+        `${process.env.BASE_URL}/competition/getDetails?id=${id}`
       );
       if (result.data) {
-        setEventName(result.data.name);
-        setEventDescription(result.data.description);
+        setCompetitionName(result.data.name);
+        setCompetitionDescription(result.data.description);
       }
     };
-    fetchEvent();
+    fetchCompetition();
   }, []);
 
   return (
@@ -29,10 +29,10 @@ export function EventHeroSection({ id }) {
         <div className="container py-24 lg:py-32 flex justify-center">
           <div className="text-center max-w-5xl">
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-              {eventName}
+              {competitionName}
             </h1>
             <p className="mt-3 text-xl text-center text-muted-foreground">
-              {eventDescription}
+              {competitionDescription}
             </p>
             <div className="mt-7 sm:mt-12 mx-auto max-w-xl relative">
               {/* Form */}

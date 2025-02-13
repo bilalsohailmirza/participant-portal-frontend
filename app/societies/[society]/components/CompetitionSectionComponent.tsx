@@ -1,7 +1,7 @@
 import Image from "next/image"
 import procom from '@/assets/procom.jpg'
 
-export function CompetitionSectionComponent(){
+export function CompetitionSectionComponent({competition}){
     return(
         <div id="about" className="relative bg-white overflow-hidden mt-16">
     <div className="max-w-7xl mx-auto">
@@ -21,11 +21,13 @@ export function CompetitionSectionComponent(){
             <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
                 <div className="sm:text-center lg:text-left">
                     <h2 className="my-6 text-2xl tracking-tight font-extrabold text-gray-900 sm:text-3xl md:text-4xl">
-                        Speed Programming
+                        {competition.name}
                     </h2>
 
                     <p>
-                    Speed programming, often known as competitive programming, is a fast-paced style of coding where developers aim to solve complex algorithmic and logical problems under time constraints. In speed programming, participants work to devise efficient, optimized solutions to a series of problems, focusing on logic, algorithms, and data structures. This practice enhances skills in problem-solving, quick-thinking, and code optimization, as solutions are judged not only on correctness but also on execution time and memory usage.                    </p>
+                    {/* Speed programming, often known as competitive programming, is a fast-paced style of coding where developers aim to solve complex algorithmic and logical problems under time constraints. In speed programming, participants work to devise efficient, optimized solutions to a series of problems, focusing on logic, algorithms, and data structures. This practice enhances skills in problem-solving, quick-thinking, and code optimization, as solutions are judged not only on correctness but also on execution time and memory usage. */}
+                    {competition.about}
+                    </p>
                 </div>
             </main>
         </div>
