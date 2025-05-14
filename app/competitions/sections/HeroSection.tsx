@@ -1,3 +1,4 @@
+import ChatbotInput from "@/components/ChatbotInput";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -29,30 +30,7 @@ export function CompetitionHeroSection({id}) {
               <p className="mt-3 text-xl text-center text-muted-foreground">
                 
               </p>
-              <div className="mt-7 sm:mt-12 mx-auto max-w-xl relative">
-                {/* Form */}
-                <form>
-                  <div className="relative z-10 flex space-x-3 p-3 border bg-background rounded-lg shadow-lg">
-                    <div className="flex-[1_0_0%]">
-                      <Label htmlFor="article" className="sr-only">
-                        Have any questions? Ask away!
-                      </Label>
-                      <Input
-                        name="article"
-                        className="h-full"
-                        id="article"
-                        placeholder="Have any questions? Ask away!"
-                      />
-                    </div>
-                    <div className="flex-[0_0_auto]">
-                      <Button size={"icon"}>
-                        <SearchIcon />
-                      </Button>
-                    </div>
-                  </div>
-                </form>
-                
-              </div>
+              <ChatbotInput />
               
             </div>
           </div>
